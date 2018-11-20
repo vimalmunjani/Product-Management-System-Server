@@ -74,8 +74,6 @@ exports.createProducts = function(req, res, next){
 
     let savedProduct = productService.createProduct(product);
 
-    
-
     savedProduct.then((product) => {
 
         log(product);

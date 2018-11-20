@@ -46,10 +46,10 @@ exports.createProduct = function(product){
 
     return new Promise((resolve, reject) => {
 
-        newProduct.save()
-               .then((product) => {
+        newProduct.create()
+               .then((p) => {
 
-                    log(product)
+                    log(p)
                     resolve(todo);
 
                }).catch((error) => {
@@ -59,7 +59,7 @@ exports.createProduct = function(product){
 
                });
 
-    })
+    });
 
     // newTodo.save()
     //         .then((todo) => {
