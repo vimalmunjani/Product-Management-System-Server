@@ -16,7 +16,7 @@ var apiRouter = require('./routes/api.route');
 
 var app = express();
 
-// require('./utils/db');
+require('./utils/db');
 
 app.use(logger('dev'));
 app.use(express.json());
