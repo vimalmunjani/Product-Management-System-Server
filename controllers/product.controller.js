@@ -32,53 +32,43 @@ exports.getProducts = function(req, res, next){
    
 }
 
-// // CREATE Todo - POST Method
-// exports.createTodo = function(req, res, next){
+// CREATE createProducts - POST Method
+exports.createProducts = function(req, res, next){
 
-//     if(!req.body.title){
-//         res.status(400).json({
-//             status: 400,
-//             message: "No title found in the body"
-//         })
-//     }
+    log(req.body);
+
+    res.json(req.body);
+
+    if(!req.body.title){
+        res.status(400).json({
+            status: 400,
+            message: "No title found in the body"
+        })
+    }
     
-//     let todo = {
-//         title: req.body.title,
-//         description: req.body.description ? req.body.description :'No description' ,
-//         status: req.body.status
-//     }
+    let todo = {
+        title: req.body.title,
+        description: req.body.description ? req.body.description :'No description' ,
+        status: req.body.status
+    }
 
-//     let savedTodo = TodoService.createTodo(todo);
+    let savedTodo = TodoService.createTodo(todo);
 
-//     savedTodo.then((todo) => {
-//         console.log("savedTodo -- "+todo);
-//         res.json({
-//             status: 200,
-//             data: todo,
-//             message: 'Todo created successfully'
-//         });
-//     }).catch((error) => {
-//         console.log("error -- "+error);
-//         res.send(error);
-//     });
+    savedTodo.
 
+    savedTodo.then((todo) => {
+        console.log("savedTodo -- "+todo);
+        res.json({
+            status: 200,
+            data: todo,
+            message: 'Todo created successfully'
+        });
+    }).catch((error) => {
+        console.log("error -- "+error);
+        res.send(error);
+    });
 
-//     // console.log("savedTodo(C) -- "+savedTodo)
-
-//     // if(!savedTodo){
-//     //     return res.status(400).json({
-//     //         status: 400,
-//     //         message: "Unable to create Todo"
-//     //     })
-//     // }
-
-//     // return res.status(200).json({
-//     //     status: 200,
-//     //     data: savedTodo,
-//     //     message: "Todo creation successful"
-//     // });
-
-// }
+}
 
 // // UPDATE Todo - PUT Method
 // exports.updateTodo =async function(req, res, next){
