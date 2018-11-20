@@ -46,7 +46,7 @@ exports.createProduct = function(product){
 
     return new Promise((resolve, reject) => {
 
-        newProduct.create()
+        newProduct.save()
                .then((p) => {
 
                     log(p)
