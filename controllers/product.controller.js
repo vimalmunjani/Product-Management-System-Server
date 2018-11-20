@@ -1,5 +1,6 @@
 const productService = require('../services/product.service');
 const logger = require('../utils/logger');
+const validateProduct = require('../validation-schema/product.validation.schema');
 
 let log = (message) => {
     logger(__filename, message);
@@ -35,7 +36,17 @@ exports.getProducts = function(req, res, next){
 // CREATE createProducts - POST Method
 exports.createProducts = function(req, res, next){
 
-    log(req.body);
+    log(JSON.stringify(req.body));
+
+    const valid = validateProduct.validate(req.body);
+
+    log(valid);
+
+    if(valid){
+        res.json('valid');
+    }else {
+        res.json('in valid');
+    }
 
     res.json(req.body);
 
@@ -46,26 +57,44 @@ exports.createProducts = function(req, res, next){
         })
     }
     
-    let todo = {
-        title: req.body.title,
-        description: req.body.description ? req.body.description :'No description' ,
-        status: req.body.status
+    let product = {
+        productId: req.body.productId, 
+        productName: req.body.productName, 
+        productCode: req.body.productCode, 
+        category: req.body.category, 
+        tags: req.body.tags, 
+        releaseDate: req.body.releaseDate, 
+        price: req.body.price, 
+        description: req.body.description,
+        available: req.body.available, 
+        threshold: req.body.threshold, 
+        starRating: req.body.starRating, 
+        imageUrl: req.body.imageUrl
     }
 
-    let savedTodo = TodoService.createTodo(todo);
+    let savedProduct = productService.createProduct(product);
 
-    savedTodo.
+    
 
-    savedTodo.then((todo) => {
-        console.log("savedTodo -- "+todo);
-        res.json({
-            status: 200,
-            data: todo,
-            message: 'Todo created successfully'
+    savedProduct.then((product) => {
+
+        log(product);
+
+        res.status(201).json({
+            status: 201,
+            data: product,
+            message: 'Product created successfully'
         });
     }).catch((error) => {
-        console.log("error -- "+error);
-        res.send(error);
+
+        log(error);
+
+        res.status(404).json({
+            status: 404,
+            data: error.message,
+            message: 'Product creation failed'
+        });
+        
     });
 
 }

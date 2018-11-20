@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-// const config = require('../config/config');
+const config = require('../config/config');
 const logger = require('../utils/logger');
 
 let log = (message) => {
@@ -12,7 +12,7 @@ const options = {
     // poolSize: 10
   };
 
-const connection = mongoose.connect('mongodb+srv://pms:pmspms@starter-cluster-mzdjw.mongodb.net/PrdManSys?retryWrites=true', options);
+const connection = mongoose.connect(config.db_uri, options);
 
 connection.then((db) => {
     console.log('connected to db')

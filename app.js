@@ -16,31 +16,13 @@ var apiRouter = require('./routes/api.route');
 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+// require('./utils/db');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
-const options = {
-  useNewUrlParser: true,
-  // reconnectTries: Number.MAX_VALUE,
-  // poolSize: 10
-};
-log('db..')
-mongoose.connect('mongodb+srv://pms:pmspms@starter-cluster-mzdjw.mongodb.net/PrdManSys?retryWrites=true', options).then((db) => {
-  console.log('connected to db')
-  log('connected to DB');
-  return db
-}).catch(() => {
-  log('Error connecting to DB',e);
-  process.exit(1);
-});
 
 app.use('/', indexRouter);
 app.use('/api', apiRouter);

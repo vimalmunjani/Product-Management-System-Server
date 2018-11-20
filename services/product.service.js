@@ -25,62 +25,62 @@ exports.getProducts = function(){
   
 }
 
-// // CREATE TODO
-// exports.createTodo = function(todo){
+// CREATE TODO
+exports.createProduct = function(product){
 
 
-//     let newTodo =new Todo({
-//         title: todo.title,
-//         description : todo.description,
-//         date: new Date(),
-//         status: todo.status
-//     });
+    let newProduct = new Product({
+        productId: product.productId, 
+        productName: product.productName, 
+        productCode: product.productCode, 
+        category: product.category, 
+        tags: product.tags, 
+        releaseDate: product.releaseDate, 
+        price: product.price, 
+        description: product.description,
+        available: product.available, 
+        threshold: product.threshold, 
+        starRating: product.starRating, 
+        imageUrl: product.imageUrl
+    });
 
-//     // let savedTodo = await newTodo.save();
-//     // newtodo = savedTodo
-//     // console.log("newtodo -- "+newtodo);
+    return new Promise((resolve, reject) => {
 
-//     // return newtodo;
+        newProduct.save()
+               .then((product) => {
+
+                    log(product)
+                    resolve(todo);
+
+               }).catch((error) => {
+
+                    log(error);
+                    reject(new Error(error));
+
+               });
+
+    })
+
+    // newTodo.save()
+    //         .then((todo) => {
+
+    //              console.log("todo(S) -- "+todo)
+    //              this.savedTodo = todo;    
+    //              console.log("savedTodo(S) -- "+savedTodo)
+    //              return savedTodo;
+    //         })
+    //         .catch((error) => {
+    //             console.log(`Error creating Todo - ${error}`);
+    //             return;
+    //         });
     
+    // if(!savedTodo){
+    //     return;
+    // }
 
-//     return new Promise((resolve, reject) => {
-
-//         newTodo.save()
-//                .then((todo) => {
-
-//                     console.log(`Todo saved -- ${todo}`)
-//                     resolve(todo);
-
-//                }).catch((error) => {
-
-//                     console.log(`Error saving Todo -- ${error}`)
-//                     reject(new Error(error));
-
-//                });
-
-//     })
-
-
-//     // newTodo.save()
-//     //         .then((todo) => {
-
-//     //              console.log("todo(S) -- "+todo)
-//     //              this.savedTodo = todo;    
-//     //              console.log("savedTodo(S) -- "+savedTodo)
-//     //              return savedTodo;
-//     //         })
-//     //         .catch((error) => {
-//     //             console.log(`Error creating Todo - ${error}`);
-//     //             return;
-//     //         });
+    //console.log("savedTodo -- "+savedTodo);
     
-//     // if(!savedTodo){
-//     //     return;
-//     // }
-
-//     //console.log("savedTodo -- "+savedTodo);
-    
-// }
+}
 
 // // UPDATE TODO
 // exports.updateTodo = async function(todo){
