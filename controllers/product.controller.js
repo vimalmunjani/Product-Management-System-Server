@@ -38,25 +38,6 @@ exports.createProducts = function(req, res, next){
 
     log(JSON.stringify(req.body));
 
-    const valid = validateProduct.validate(req.body);
-
-    log(valid);
-
-    if(valid){
-        res.json('valid');
-    }else {
-        res.json('in valid');
-    }
-
-    res.json(req.body);
-
-    if(!req.body.title){
-        res.status(400).json({
-            status: 400,
-            message: "No title found in the body"
-        })
-    }
-    
     let product = {
         productId: req.body.productId, 
         productName: req.body.productName, 
