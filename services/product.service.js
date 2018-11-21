@@ -52,7 +52,7 @@ exports.createProduct = function(product){
                .then((p) => {
 
                     log(p)
-                    resolve(todo);
+                    resolve(p);
 
                }).catch((error) => {
 
