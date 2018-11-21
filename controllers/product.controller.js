@@ -33,6 +33,43 @@ exports.getProducts = function(req, res, next){
    
 }
 
+
+
+exports.getProductById = function(req, res, next){
+
+    let productId = req.params.id
+    if(!productId) {
+        res.status(400).json({
+            status: 400,
+            data: null,
+            message: 'No product Id found in Params'
+        });
+    }
+
+    let product = productService.getProductById(productId);
+    
+    product.then((p) => {
+
+        log(p);
+
+        res.status(200).json({
+            status: 200,
+            data: p,
+            message: 'Get Product Successful'
+        });
+
+    }).catch((error) => {
+
+        res.status(404).json({
+            status: 404,
+            data: error.message,
+            message: 'Get Product Unsuccessful'
+        });
+
+    });
+   
+}
+
 // CREATE createProducts - POST Method
 exports.createProduct = function(req, res, next){
 

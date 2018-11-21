@@ -25,6 +25,25 @@ exports.getProducts = function(){
   
 }
 
+exports.getProductById = function(productId){
+
+    return new Promise((resolve, reject) => {
+
+        Product.findById(productId)
+        .then((product) => {
+            log('products' , product)
+            resolve(product);
+        })
+        .catch((error) => {
+            console.log('Error retrieving product By id');
+            reject(new Error(error));
+        });
+
+
+    });
+  
+}
+
 // CREATE TODO
 exports.createProduct = function(product){
 
