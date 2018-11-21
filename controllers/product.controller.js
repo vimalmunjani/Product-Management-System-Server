@@ -34,9 +34,9 @@ exports.getProducts = function(req, res, next){
 }
 
 // CREATE createProducts - POST Method
-exports.createProducts = function(req, res, next){
+exports.createProduct = function(req, res, next){
 
-    log(JSON.stringify(req.body));
+    
 
     let product = {
         productId: req.body.productId, 
@@ -52,6 +52,8 @@ exports.createProducts = function(req, res, next){
         starRating: req.body.starRating, 
         imageUrl: req.body.imageUrl
     }
+
+    log(JSON.stringify(product));
 
     let savedProduct = productService.createProduct(product);
 

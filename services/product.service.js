@@ -44,6 +44,8 @@ exports.createProduct = function(product){
         imageUrl: product.imageUrl
     });
 
+    log(JSON.stringify(newProduct));
+
     return new Promise((resolve, reject) => {
 
         newProduct.save()
