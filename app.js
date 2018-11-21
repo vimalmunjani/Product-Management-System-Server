@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors');
 const mongoose = require('mongoose');
 // const config = require('../config/config');
 const logger1 = require('./utils/logger');
@@ -18,6 +19,7 @@ var app = express();
 
 require('./utils/db');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
