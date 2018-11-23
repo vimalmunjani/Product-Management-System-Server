@@ -166,20 +166,20 @@ exports.createProduct = function(product){
    
 // } 
 
-// // DELETE TODO
-// exports.deleteTodo = function(id){
+// DELETE TODO
+exports.deleteProduct = function(id){
 
-// return new Promise((resolve, reject) => {
+return new Promise((resolve, reject) => {
 
-//     Todo.findByIdAndDelete(id)
-//     .then((deletedTodo) => {
-//         log(`Todo Deletion successful -- ${deletedTodo}`);
-//         resolve(deletedTodo);
-//     }).catch((error) => {
-//         log(`Error deleting Todo ${error.message}`);
-//         reject(new Error('Error Deleting Todo'));
-//     });
+    Product.findByIdAndDelete(id)
+    .then((deletedProduct) => {
+        log(`delete success - ${deletedProduct}`);
+        resolve(deletedProduct);
+    }).catch((error) => {
+        log(`Error deleting Product ${error.message}`);
+        reject(new Error('Error Deleting Product'));
+    });
 
-// });
+});
 
-// }
+}

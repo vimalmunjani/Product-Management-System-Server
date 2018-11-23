@@ -170,39 +170,39 @@ exports.createProduct = function(req, res, next){
 //     }    
 // }
 
-// // DELETE Todd - DELETE Method
-// exports.deleteTodo = async function(req, res, next){
+// DELETE Todd - DELETE Method
+exports.deleteProduct = async function(req, res, next){
 
-//     if(!req.params.id){
-//         res.status(400).json({
-//             status: 400,
-//             data: null,
-//             message: 'ID required'
-//         });
-//     }
+    if(!req.params.id){
+        res.status(400).json({
+            status: 400,
+            data: null,
+            message: 'ID required'
+        });
+    }
     
-//     try{
+    try{
 
-//         let deleteTodo = await TodoService.deleteTodo(req.params.id);
+        let deletedProduct = await productService.deleteProduct(req.params.id);
 
-//         log(`todo deleted`);
+        log(`product deleted - ${deletedProduct}`);
 
-//         res.status(200).json({
-//             status: 200,
-//             data: deleteTodo,
-//             message: 'Todo deleted successfully'
-//         });
+        res.status(200).json({
+            status: 200,
+            data: deletedProduct,
+            message: 'Todo deleted successfully'
+        });
 
-//     }catch(e){
+    }catch(e){
 
-//         log(`todo not deleted`);
+        log(`product not deleted - ${e}`);
 
-//         res.status(400).json({
-//             status: 400,
-//             data: null,
-//             message: e.message
-//         });
+        res.status(400).json({
+            status: 400,
+            data: null,
+            message: e.message
+        });
 
-//     }
+    }
 
-// }
+}
